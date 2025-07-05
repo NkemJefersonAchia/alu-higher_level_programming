@@ -1,2 +1,2 @@
 #!/bin/bash
-python3 $PYFILE start
+python3 "$PYFILE"
