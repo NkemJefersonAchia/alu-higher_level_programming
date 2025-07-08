@@ -14,19 +14,20 @@ The Rectangle class supports:
 Raises appropriate exceptions on invalid inputs.
 """
 
+
 class Rectangle:
     """
     Represents a rectangle with width and height.
 
     Attributes:
-        number_of_instances (int): Class attribute tracking number of Rectangle instances.
+        number_of_instances (int): Tracks number of Rectangle instances.
         print_symbol (any): Symbol used for string representation (default '#').
 
     Methods:
         area(): Returns the area of the rectangle.
         perimeter(): Returns the perimeter of the rectangle.
-        bigger_or_equal(rect_1, rect_2): Static method returning the bigger rectangle by area.
-        square(size=0): Class method to create a square rectangle.
+        bigger_or_equal(rect_1, rect_2): Returns the bigger rectangle by area.
+        square(size=0): Creates a square (width == height).
     """
 
     number_of_instances = 0
@@ -37,8 +38,8 @@ class Rectangle:
         Initialize a Rectangle instance.
 
         Args:
-            width (int): Width of the rectangle (default 0).
-            height (int): Height of the rectangle (default 0).
+            width (int): Width of the rectangle.
+            height (int): Height of the rectangle.
 
         Raises:
             TypeError: If width or height is not an integer.
@@ -98,46 +99,44 @@ class Rectangle:
 
     def __str__(self):
         """
-        String representation of the rectangle using print_symbol.
+        String representation using the print_symbol.
 
         Returns:
-            str: String made of print_symbol repeated width * height times,
-                 or an empty string if width or height is 0.
+            str: Rectangle made of print_symbol or empty string.
         """
         if self.width == 0 or self.height == 0:
             return ""
         symbol = str(self.print_symbol)
-        lines = [symbol * self.width for _ in range(self.height)]
-        return "\n".join(lines)
+        return "\n".join([symbol * self.width for _ in range(self.height)])
 
     def __repr__(self):
         """
-        Official string representation of the rectangle.
+        Official representation of the rectangle.
 
         Returns:
-            str: String that can be used to recreate this rectangle using eval().
+            str: String to recreate the instance with eval().
         """
         return f"Rectangle({self.width}, {self.height})"
 
     def __del__(self):
-        """Actions to perform upon instance deletion."""
+        """Actions on instance deletion."""
         Rectangle.number_of_instances -= 1
         print("Bye rectangle...")
 
     @staticmethod
     def bigger_or_equal(rect_1, rect_2):
         """
-        Return the rectangle with the greater or equal area.
+        Compare two rectangles and return the bigger or equal one.
 
         Args:
             rect_1 (Rectangle): First rectangle.
             rect_2 (Rectangle): Second rectangle.
 
         Returns:
-            Rectangle: The bigger or equal rectangle (rect_1 if equal).
+            Rectangle: The bigger rectangle (or rect_1 if equal).
 
         Raises:
-            TypeError: If either rect_1 or rect_2 is not a Rectangle instance.
+            TypeError: If either argument is not a Rectangle.
         """
         if not isinstance(rect_1, Rectangle):
             raise TypeError("rect_1 must be an instance of Rectangle")
@@ -151,13 +150,13 @@ class Rectangle:
     @classmethod
     def square(cls, size=0):
         """
-        Create a new Rectangle instance with width == height == size.
+        Create a square-shaped Rectangle instance.
 
         Args:
-            size (int): Size of the square sides.
+            size (int): Size of width and height.
 
         Returns:
-            Rectangle: New square instance.
+            Rectangle: New rectangle instance (square).
 
         Raises:
             TypeError: If size is not an integer.
@@ -168,3 +167,4 @@ class Rectangle:
         if size < 0:
             raise ValueError("width must be >= 0")
         return cls(size, size)
+
