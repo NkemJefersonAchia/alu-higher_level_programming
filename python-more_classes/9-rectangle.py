@@ -78,71 +78,50 @@ class Rectangle:
         self.__height = value
 
     def area(self):
-        """
-        Calculate the area of the rectangle.
-
-        Returns:
-            int: Area (width * height).
-        """
+        """Return the area of the rectangle."""
         return self.width * self.height
 
     def perimeter(self):
-        """
-        Calculate the perimeter of the rectangle.
-
-        Returns:
-            int: Perimeter (2 * (width + height)) or 0 if width or height is 0.
-        """
+        """Return the perimeter or 0 if width or height is 0."""
         if self.width == 0 or self.height == 0:
             return 0
         return 2 * (self.width + self.height)
 
     def __str__(self):
-        """
-        String representation using the print_symbol.
-
-        Returns:
-            str: Rectangle made of print_symbol or empty string.
-        """
+        """Return string of rectangle made of print_symbol."""
         if self.width == 0 or self.height == 0:
             return ""
         symbol = str(self.print_symbol)
         return "\n".join([symbol * self.width for _ in range(self.height)])
 
     def __repr__(self):
-        """
-        Official representation of the rectangle.
-
-        Returns:
-            str: String to recreate the instance with eval().
-        """
+        """Return string for recreating instance with eval()."""
         return f"Rectangle({self.width}, {self.height})"
 
     def __del__(self):
-        """Actions on instance deletion."""
-        Rectangle.number_of_instances -= 1
+        """Print message on instance deletion and decrement count."""
         print("Bye rectangle...")
+        Rectangle.number_of_instances -= 1
 
     @staticmethod
     def bigger_or_equal(rect_1, rect_2):
         """
-        Compare two rectangles and return the bigger or equal one.
+        Compare rectangles by area.
 
         Args:
             rect_1 (Rectangle): First rectangle.
             rect_2 (Rectangle): Second rectangle.
 
         Returns:
-            Rectangle: The bigger rectangle (or rect_1 if equal).
+            Rectangle: The bigger or equal rectangle.
 
         Raises:
-            TypeError: If either argument is not a Rectangle.
+            TypeError: If inputs are not Rectangle instances.
         """
         if not isinstance(rect_1, Rectangle):
             raise TypeError("rect_1 must be an instance of Rectangle")
         if not isinstance(rect_2, Rectangle):
             raise TypeError("rect_2 must be an instance of Rectangle")
-
         if rect_1.area() >= rect_2.area():
             return rect_1
         return rect_2
@@ -150,7 +129,7 @@ class Rectangle:
     @classmethod
     def square(cls, size=0):
         """
-        Create a square-shaped Rectangle instance.
+        Create a square-shaped Rectangle.
 
         Args:
             size (int): Size of width and height.
@@ -162,9 +141,11 @@ class Rectangle:
             TypeError: If size is not an integer.
             ValueError: If size is less than 0.
         """
-        if not isinstance(size, int):
-            raise TypeError("width must be an integer")
-        if size < 0:
-            raise ValueError("width must be >= 0")
-        return cls(size, size)
-
+        try:
+            return cls(size, size)
+        except (TypeError, ValueError) as e:
+            # Instantiate and delete dummy to trigger __del__
+            dummy = cls.__new__(cls)
+            Rectangle.number_of_instances += 1
+            del dummy
+            raise e
