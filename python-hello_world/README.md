@@ -1,1 +1,1 @@
-This file is for python-hello_world
+# this folder contains all the scripts used in the tasks done 

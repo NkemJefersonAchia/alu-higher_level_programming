@@ -1,1 +1,1 @@
-This file is for python-classes
+this is a readme for this project

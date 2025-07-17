@@ -1,1 +1,1 @@
-This is the file for python-everything_is_object
+This is the readme file for this project

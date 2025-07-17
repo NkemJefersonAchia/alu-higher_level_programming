@@ -1,2 +1,3 @@
 #!/usr/bin/python3
-print("\n".join("{0} = {0:#x}".format(i) for i in range(99)))
+for num in range(0, 99):
+    print("{0} = 0x{0:x}".format(num))

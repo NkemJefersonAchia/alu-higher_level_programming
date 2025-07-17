@@ -1,13 +1,17 @@
 #!/usr/bin/python3
-"""Defines a class Square with size validation."""
+"""
+This module contains the definition of the Square class.
+"""
 
 
 class Square:
-    """Represents a square."""
+    """
+    A class that defines a square by its size.
+    """
 
     def __init__(self, size=0):
         """
-        Initializes the square with a given size.
+        Initialize the square with a private instance attribute size.
 
         Args:
             size (int): The size of the square (default is 0).
