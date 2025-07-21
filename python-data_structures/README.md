@@ -1,1 +1,1 @@
-this is the readme file for this project
+This is the readme for the data structures intranet assignment

@@ -1,1 +1,1 @@
-this is the readme file for this project
+This is the readme file for python exceptions intranet assestment

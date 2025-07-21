@@ -1,26 +1,19 @@
 #!/usr/bin/python3
 """
-This module defines a Student class with public instance attributes
-and methods to retrieve a dictionary representation of a Student instance,
-and to reload attributes from a JSON dictionary.
+Module that defines a Student class.
 """
 
 
 class Student:
     """
-    A class used to represent a Student.
-
-    Attributes:
-        first_name (str): The first name of the student
-        last_name (str): The last name of the student
-        age (int): The age of the student
+    A class that defines a student.
     """
 
     def __init__(self, first_name, last_name, age):
         """
-        Initializes a new Student instance.
+        Initializes a Student instance.
 
-        Parameters:
+        Args:
             first_name (str): The first name of the student.
             last_name (str): The last name of the student.
             age (int): The age of the student.
@@ -33,29 +26,28 @@ class Student:
         """
         Retrieves a dictionary representation of a Student instance.
 
-        Parameters:
-            attrs (list, optional): List of attribute names to retrieve.
-                                    If None, all attributes are retrieved.
+        Args:
+            attrs (list): List of attribute names to retrieve.
+                          If None, all attributes are retrieved.
 
         Returns:
-            dict: A dictionary containing the attributes of the Student \
-                    instance.
+            dict: Dictionary representation of the student's attributes.
         """
         if attrs is None:
             return self.__dict__
-        else:
-            return {attr: getattr(self, attr)
-                    for attr in attrs if hasattr(self, attr)}
+
+        result = {}
+        for attr in attrs:
+            if hasattr(self, attr):
+                result[attr] = getattr(self, attr)
+        return result
 
     def reload_from_json(self, json):
         """
-        Replaces all attributes of the Student instance from a JSON dictionary.
+        Replaces all attributes of the Student instance.
 
-        Parameters:
-            json (dict): A dictionary containing attribute names and values \
-                    to reload.
-                         Each key is a public attribute name, and each value\
-                                 is the attribute value.
+        Args:
+            json (dict): Dictionary containing the new attribute values.
         """
         for key, value in json.items():
             setattr(self, key, value)

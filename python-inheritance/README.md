@@ -1,1 +1,1 @@
-this is read me file for this project
+This is the readme file for the python inheritance intranet assignment.

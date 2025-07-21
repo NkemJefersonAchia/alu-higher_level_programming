@@ -1,2 +1,1 @@
- #this repository all the activities done about pyhton-hello,world
-
+### This repository contains all intranet assignmnets for Introduction to Python Programming

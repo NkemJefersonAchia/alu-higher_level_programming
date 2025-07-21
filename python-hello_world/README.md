@@ -1,1 +1,1 @@
-# this folder contains all the scripts used in the tasks done 
+This is repository contains all intranet assignmnets for Introduction to Python Programming
