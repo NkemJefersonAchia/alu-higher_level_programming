@@ -1,20 +1,11 @@
 #!/usr/bin/python3
-"""
-Module that defines a function to check if an object is exactly
-an instance of the specified class
-"""
+"""Checks object class"""
 
 
 def is_same_class(obj, a_class):
-    """
-    Returns True if the object is exactly an instance of the specified class;
-    otherwise False.
-
+    """Checks object class
     Args:
-        obj: The object to check
-        a_class: The class to check against
-
-    Returns:
-        bool: True if obj is exactly an instance of a_class, False otherwise
+        - obj: object to class
+        - a_class: class to check
     """
     return type(obj) is a_class

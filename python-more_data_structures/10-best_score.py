@@ -2,6 +2,10 @@
 def best_score(a_dictionary):
     if not a_dictionary:
         return None
-    # Find the key with the maximum integer value
-    best_key = max(a_dictionary, key=a_dictionary.get)
-    return best_key
+    max = list(a_dictionary.items())[0][1]
+    for key, value in a_dictionary.items():
+        if value > max:
+            max = value
+    for key, value in a_dictionary.items():
+        if value == max:
+            return key

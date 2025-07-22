@@ -1,23 +1,20 @@
 #!/usr/bin/python3
-"""
-This module uses the GitHub API with Basic Authentication to display the
-user ID of the authenticated user using username and personal access token.
-"""
-
+"""Documented now"""
 import requests
+import requests.auth
 import sys
 
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     username = sys.argv[1]
-    token = sys.argv[2]
-
-    url = "https://api.github.com/user"
-
-    response = requests.get(url, auth=(username, token))
-
+    password = sys.argv[2]
+    response = requests.get(
+        url="https://api.github.com/user",
+        auth=(requests.auth.HTTPBasicAuth(
+            username,
+            password
+        )))
     try:
-        user_data = response.json()
-        print(user_data.get('id'))
-    except ValueError:
-        print("None")
+        json_response = response.json()
+        print("{}".format(json_response["id"]))
+    except:
+        print(None)

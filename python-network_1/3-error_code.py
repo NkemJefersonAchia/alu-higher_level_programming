@@ -1,20 +1,19 @@
 #!/usr/bin/python3
-"""
-This module sends a request to a URL and displays the body of the response
-decoded in UTF-8. It handles HTTPError exceptions and displays error codes.
-"""
+"""I documented you"""
 
 import urllib.request
 import urllib.error
 import sys
 
-
-if __name__ == "__main__":
+if __name__ == '__main__':
+    """"Documented"""
     url = sys.argv[1]
-
+    req = urllib.request.Request(url)
     try:
-        with urllib.request.urlopen(url) as response:
-            body = response.read()
-            print(body.decode('utf-8'))
+        with urllib.request.urlopen(req) as response:
+            content = response.read()
+            print("{}".format(content.decode("utf-8")))
     except urllib.error.HTTPError as e:
         print("Error code: {}".format(e.code))
+    except urllib.error.URLError as e:
+        print(e.reason)

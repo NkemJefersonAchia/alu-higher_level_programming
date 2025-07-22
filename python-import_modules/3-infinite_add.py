@@ -1,12 +1,13 @@
 #!/usr/bin/python3
+from sys import argv
 
-if __name__ == "__main__":
-    import sys
+if __name__ == '__main__':
+    args_number = len(argv) - 1
 
-    argv = sys.argv[1:]  # Exclude the script name
-    result = 0
-
-    for arg in argv:
-        result += int(arg)
-
-    print(result)
+    if args_number > 0:
+        sum_ = 0
+        for args in argv[1:]:
+            sum_ += int(args)
+        print("{}".format(sum_))
+    else:
+        print("{}".format(args_number))
